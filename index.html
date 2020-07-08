@@ -3,10 +3,240 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lucienne's Weather App</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/4231fbb4cc.js"
+      crossorigin="anonymous"
+    ></script>
+
     <link rel="stylesheet" href="src/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Lucienne's Weather App</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
+
   <body>
-    <h1>Starting my HTML file</h1>
+    <div class="”container”">
+      <h1 class="header">Weather App</h1>
+      <div class="searchbar">
+        <div class="row">
+          <div class="col-10">
+            <form class="searchForm" id="search-form">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Search your location"
+                autocomplete="off"
+                id="search-city-input"
+              />
+              <button class="searchButton" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+          </div>
+          <div class="col-2">
+            <button class="currentLocation" id="current-location">
+              <img
+                src="images/location.png"
+                alt="locationIcon"
+                class="locationIcon"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="totalToday">
+        <div class="blockWeatherNow" id="weather-now">
+          <div class="showNow">
+            <h2 class="city" id="searched-city">Amsterdam</h2>
+            <p class="currentDate" id="date-now">
+              Last updated: Sunday - July 5th 2020 - 21:47 PM
+            </p>
+            <div class="weatherNow">
+              <h1 class="currentTemp" id="temp-now">25°C</h1>
+              <img
+                class="currentIcon"
+                id="current-icon"
+                src="images/sun.png"
+                alt="full sun"
+              />
+              <p class="weatherType" id="weather-type">
+                <strong>Sunny</strong>
+              </p>
+            </div>
+            <div class="row todayStats">
+              <div class="col-4">
+                <div class="humidity">
+                  <img
+                    class="humidityIcon"
+                    src="images/humidity.png"
+                    alt="humidity icon"
+                  />
+                  <br />
+                  <span class="statType">Humidity</span> <br />
+                  <span class="stats" id="humidity">30%</span>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="wind">
+                  <img class="windIcon" src="images/wind.png" alt="wind icon" />
+                  <br />
+                  <span class="statType">Wind</span> <br />
+                  <span class="stats" id="wind">5 km/h</span>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="feelsLike">
+                  <img
+                    class="feelsLikeIcon"
+                    src="images/thermometer.png"
+                    alt="thermometer icon"
+                  />
+                  <br />
+                  <span class="statType">Feels like</span> <br />
+                  <span class="stats" id="feels-like">28°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="blockWeatherToday">
+          <div class="row upcomingHours">
+            <div class="col-2">
+              <span class="time">1PM</span>
+              <img class="hourIcons" src="images/sun.png" alt="full sun" />
+              <span class="hourTemp">25°C</span>
+            </div>
+            <div class="col-2">
+              <span class="time">2PM</span>
+              <img
+                class="hourIcons"
+                src="images/partialsun.png"
+                alt="partial sun"
+              />
+              <span class="hourTemp">22°C</span>
+            </div>
+            <div class="col-2">
+              <span class="time">3PM</span>
+              <img
+                class="hourIcons"
+                src="images/partialsun.png"
+                alt="partial sun"
+              />
+              <span class="hourTemp">22°C</span>
+            </div>
+            <div class="col-2">
+              <span class="time">4PM</span>
+              <img class="hourIcons" src="images/cloudy.png" alt="cloudy" />
+              <span class="hourTemp">20°C</span>
+            </div>
+            <div class="col-2">
+              <span class="time">5PM</span>
+              <img
+                class="hourIcons"
+                src="images/umbrella.png"
+                alt="umbrella with rain"
+              />
+              <span class="hourTemp">18°C</span>
+            </div>
+            <div class="col-2">
+              <span class="time">6PM</span>
+              <img
+                class="hourIcons"
+                src="images/thunder.png"
+                alt="thunderstorm"
+              />
+              <span class="hourTemp">18°C</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="upcomingDays">
+        <div class="row">
+          <div class="col-6">
+            <h5>Tomorrow</h5>
+          </div>
+          <div class="temperature col-4">
+            13°C / 18°C
+          </div>
+          <div class="col-2">
+            <img class="dayIcons" src="images/sun.png" alt="sunny" />
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-6">
+            <h5>Sunday</h5>
+          </div>
+          <div class="temperature col-4">
+            -1°C / 2°C
+          </div>
+          <div class="col-2">
+            <img class="dayIcons" src="images/ice.png" alt="snow" />
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-6">
+            <h5>Monday</h5>
+          </div>
+          <div class="temperature col-4">
+            6°C / 14°C
+          </div>
+          <div class="col-2">
+            <img class="dayIcons" src="images/wind.png" alt="windy" />
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-6">
+            <h5>Tuesday</h5>
+          </div>
+          <div class="temperature col-4">
+            10°C / 16°C
+          </div>
+          <div class="col-2">
+            <img
+              class="dayIcons"
+              src="images/partialsun.png"
+              alt="partial sun"
+            />
+          </div>
+        </div>
+      </div>
+      <footer>
+        Icons made by
+        <a href="https://www.flaticon.com/authors/freepik" title="Freepik"
+          >Freepik</a
+        >,
+        <a href="https://www.flaticon.com/authors/iconixar" title="iconixar"
+          >iconixar</a
+        >,
+        <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a>
+        and
+        <a
+          href="https://www.flaticon.com/free-icon/snowflake_2942944"
+          title="surang"
+          >surang</a
+        >
+        from
+        <a href="https://www.flaticon.com/" title="Flaticon">
+          www.flaticon.com</a
+        >
+      </footer>
+    </div>
+    <script src="src/javascript.js"></script>
   </body>
 </html>

@@ -1,3 +1,218 @@
-h1 {
-  color: cornflowerblue;
+body {
+  background-color: #f1f3f4;
+  font-family: "Handlee", cursive;
+}
+p {
+  margin: 0;
+}
+.header,
+.city,
+.currentTemp {
+  font-family: "Lobster Two", cursive;
+}
+.header {
+  text-align: center;
+  margin: 30px 0 10px 0;
+  font-size: 55px;
+  color: #68809b;
+}
+.totalToday,
+.blockWeatherNow,
+.blockWeatherToday,
+.searchbar,
+.upcomingDays {
+  max-width: 440px;
+  margin: 0 auto;
+}
+.totalToday,
+.searchbar,
+.weatherNow,
+.humidity,
+.wind,
+.feelsLike {
+  border-radius: 10px;
+}
+.searchbar,
+.blockWeatherToday {
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+.searchbar {
+  height: 60px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.searchForm {
+  width: 300px;
+}
+.form-control {
+  display: inline-block;
+  width: 80%;
+  margin-left: 15px;
+  font-size: 18px;
+  background-color: #f1f3f4;
+}
+.form-control:focus {
+  background-color: #f1f3f4;
+}
+.searchButton {
+  display: inline;
+  border: none;
+  background: none;
+  position: relative;
+  color: #6d757d;
+  right: 35px;
+}
+
+.currentLocation {
+  border: none;
+  background: none;
+  opacity: 0.7;
+  position: relative;
+  right: 70px;
+}
+.locationIcon {
+  width: 35px;
+}
+.searchbar,
+.totalToday {
+  box-shadow: 2px 2px 10px darkgray;
+}
+.blockWeatherNow {
+  border-radius: 10px 10px 0 0;
+  background-image: url("../images/Sunshine.png");
+  background-size: 440px;
+  height: 410px;
+  position: relative;
+}
+.blockWeatherNow::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.showNow {
+  position: relative;
+}
+.city {
+  font-size: 45px;
+  padding: 15px 0 0 20px;
+  margin: 0;
+}
+.currentDate {
+  font-size: 14px;
+  padding-left: 20px;
+}
+.weatherNow {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 25px;
+  width: fit-content;
+  padding: 5px 10px;
+}
+.weatherNow,
+.humidity,
+.wind,
+.feelsLike {
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: 180ms ease-in;
+}
+
+.currentTemp {
+  margin: 0;
+  font-size: 45px;
+}
+.weatherType {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.funnyQuote {
+  margin-top: 10px;
+  font-size: 18px;
+}
+.todayStats {
+  text-align: center;
+  margin: 25px 15px;
+}
+.humidity,
+.wind,
+.feelsLike {
+  width: 100px;
+  margin: 0 auto;
+}
+.weatherNow:hover,
+.humidity:hover,
+.wind:hover,
+.feelsLike:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+.currentIcon {
+  max-width: 45px;
+  max-height: 45px;
+  margin: 5px 0;
+}
+.humidityIcon,
+.windIcon,
+.feelsLikeIcon,
+.hourIcons,
+.dayIcons {
+  max-width: 35px;
+  height: 35px;
+}
+.humidityIcon,
+.windIcon,
+.feelsLikeIcon {
+  margin-top: 10px;
+}
+.hourIcons,
+.dayIcons {
+  margin: 5px 0;
+}
+
+.statType {
+  font-size: 12px;
+}
+.stats {
+  font-size: 18px;
+}
+.blockWeatherToday {
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 20px;
+}
+.upcomingHours {
+  text-align: center;
+  padding: 10px 30px;
+}
+.time {
+  font-weight: bold;
+}
+.hourTemp {
+  font-size: 14px;
+}
+.upcomingDays {
+  margin-bottom: 70px;
+}
+h5 {
+  margin: 0 20px;
+  line-height: 2.2;
+}
+h5,
+.temperature {
+  color: #6d757d;
+}
+.temperature {
+  font-size: 15px;
+  line-height: 3;
+}
+.dayIcons {
+  opacity: 0.5;
+}
+hr {
+  margin: 0 10px;
+}
+footer {
+  font-size: 10px;
 }
