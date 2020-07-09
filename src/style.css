@@ -20,7 +20,8 @@ p {
 .blockWeatherNow,
 .blockWeatherToday,
 .searchbar,
-.upcomingDays {
+.upcomingDays,
+.githubLink {
   max-width: 440px;
   margin: 0 auto;
 }
@@ -193,7 +194,7 @@ p {
   font-size: 14px;
 }
 .upcomingDays {
-  margin-bottom: 70px;
+  margin-bottom: 15px;
 }
 h5 {
   margin: 0 20px;
@@ -212,6 +213,11 @@ h5,
 }
 hr {
   margin: 0 10px;
+}
+.githubLink {
+  font-size: 13px;
+  text-align: right;
+  margin-bottom: 70px;
 }
 footer {
   font-size: 10px;
