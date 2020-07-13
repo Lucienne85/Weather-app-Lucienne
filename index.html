@@ -31,34 +31,28 @@
     <div class="”container”">
       <h1 class="header">Weather App</h1>
       <div class="searchbar">
-        <div class="row">
-          <div class="col-8">
-            <form class="searchForm" id="search-form">
-              <input
-                class="form-control"
-                type="text"
-                placeholder="Search your location"
-                autocomplete="off"
-                id="search-city-input"
-              />
-              <button class="searchButton" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
-          <div class="col-4">
-            <button class="currentLocation" id="current-location">
-              <img
-                src="images/location.png"
-                alt="locationIcon"
-                class="locationIcon"
-              />
-            </button>
-            <div class="units">
-              <button class="unitButton">°C</button> |
-              <button class="unitButton fahrenheit">°F</button>
-            </div>
-          </div>
+        <form class="searchForm" id="search-form">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Search your location"
+            autocomplete="off"
+            id="search-city-input"
+          />
+          <button class="searchButton" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <button class="currentLocation" id="current-location">
+          <img
+            src="images/location.png"
+            alt="locationIcon"
+            class="locationIcon"
+          />
+        </button>
+        <div class="units">
+          <button class="unitButton">°C</button> |
+          <button class="unitButton fahrenheit">°F</button>
         </div>
       </div>
       <div class="totalToday">
