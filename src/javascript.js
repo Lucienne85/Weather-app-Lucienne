@@ -58,7 +58,19 @@ if (hour < 12) {
 
 currentDate.innerHTML = `Last updated: ${currentDay} - ${currentMonth} ${date}${dateType} ${year} - ${hour}:${minutes} ${amPm}`;
 
-function showHourForecast(response) {
+function showBackground(response) {
+  let weatherMain = response.data.weather[0].main;
+  let backgroundImage = document.querySelector("#weather-now");
+
+  if (weatherMain === "Clear") {
+    backgroundImage.classList.remove("cloudyBackground");
+    backgroundImage.classList.add("sunnyBackground");
+  } else {
+    backgroundImage.classList.add("cloudyBackground");
+  }
+}
+
+function showCurrentIcon(response) {
   let weatherId = response.data.weather[0].id;
   let weatherMain = response.data.weather[0].main;
   let weatherDescription = response.data.weather[0].description;
@@ -129,7 +141,8 @@ function showWeather(response) {
   showTemperature(response);
   showQuote(response);
   showCurrentStats(response);
-  showHourForecast(response);
+  showCurrentIcon(response);
+  showBackground(response);
   console.log(response.data);
 }
 

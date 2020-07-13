@@ -87,11 +87,16 @@ p {
   box-shadow: 2px 2px 10px darkgray;
 }
 .blockWeatherNow {
-  border-radius: 10px 10px 0 0;
-  background-image: url("../images/Sunshine.png");
   background-size: 440px;
+  border-radius: 10px 10px 0 0;
   height: 410px;
   position: relative;
+}
+.sunnyBackground {
+  background-image: url("../images/Sunshine.png");
+}
+.cloudyBackground {
+  background-image: url("../images/cloudsbackground.jpeg");
 }
 .blockWeatherNow::before {
   content: "";
