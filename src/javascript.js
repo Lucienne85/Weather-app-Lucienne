@@ -63,7 +63,7 @@ function showBackground(response) {
   let weatherId = response.data.weather[0].id;
   let backgroundImage = document.querySelector("#weather-now");
 
-  if (weatherMain === "Thunder") {
+  if (weatherMain === "Thunderstorm") {
     backgroundImage.classList.remove(
       "drizzleBackground",
       "freezingRainBackground",
