@@ -92,11 +92,29 @@ p {
   height: 410px;
   position: relative;
 }
-.sunnyBackground {
-  background-image: url("../images/Sunshine.png");
+.thunderBackground {
+  background-image: url("../images/LightningBackground.jpg");
 }
-.cloudyBackground {
-  background-image: url("../images/cloudsbackground.jpeg");
+.drizzleBackground {
+  background-image: url("../images/DrizzleBackground.jpg");
+}
+.freezingRainBackground {
+  background-image: url("../images/FreezingBackground.jpg");
+}
+.rainBackground {
+  background-image: url("../images/RainBackground.jpg");
+}
+.snowBackground {
+  background-image: url("../images/SnowBackground.jpg");
+}
+.fogBackground {
+  background-image: url("../images/FoggyBackground.png");
+}
+.sunnyBackground {
+  background-image: url("../images/SunnyBackground.jpg");
+}
+.fewCloudsBackground {
+  background-image: url("../images/FewCloudsBackground.jpg");
 }
 .blockWeatherNow::before {
   content: "";
@@ -130,7 +148,7 @@ p {
 .humidity,
 .wind,
 .feelsLike {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
   transition: 180ms ease-in;
 }
 

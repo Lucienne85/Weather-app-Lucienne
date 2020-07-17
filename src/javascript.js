@@ -60,13 +60,73 @@ currentDate.innerHTML = `Last updated: ${currentDay} - ${currentMonth} ${date}${
 
 function showBackground(response) {
   let weatherMain = response.data.weather[0].main;
+  let weatherId = response.data.weather[0].id;
   let backgroundImage = document.querySelector("#weather-now");
 
-  if (weatherMain === "Clear") {
-    backgroundImage.classList.remove("cloudyBackground");
+  if (weatherMain === "Thunder") {
+    backgroundImage.classList.remove(
+      "drizzleBackground",
+      "freezingRainBackground",
+      "rainBackground",
+      "snowBackground",
+      "fogBackground",
+      "sunnyBackground",
+      "fewCloudsBackground"
+    );
+    backgroundImage.classList.add("thunderBackground");
+  } else if (weatherMain === "Drizzle") {
+    backgroundImage.classList.remove(
+      "freezingRainBackground",
+      "rainBackground",
+      "snowBackground",
+      "fogBackground",
+      "sunnyBackground",
+      "fewCloudsBackground"
+    );
+    backgroundImage.classList.add("drizzleBackground");
+  } else if (weatherId === 511) {
+    backgroundImage.classList.remove(
+      "rainBackground",
+      "snowBackground",
+      "fogBackground",
+      "sunnyBackground",
+      "fewCloudsBackground"
+    );
+    backgroundImage.classList.add("freezingRainBackground");
+  } else if (weatherMain === "Rain") {
+    backgroundImage.classList.remove(
+      "snowBackground",
+      "fogBackground",
+      "sunnyBackground",
+      "fewCloudsBackground"
+    );
+    backgroundImage.classList.add("rainBackground");
+  } else if (weatherMain === "Snow") {
+    backgroundImage.classList.remove(
+      "fogBackground",
+      "sunnyBackground",
+      "fewCloudsBackground"
+    );
+    backgroundImage.classList.add("snowBackground");
+  } else if (
+    weatherId === 701 ||
+    weatherId === 711 ||
+    weatherId === 721 ||
+    weatherId === 731 ||
+    weatherId === 741 ||
+    weatherId === 751 ||
+    weatherId === 761 ||
+    weatherId === 762 ||
+    weatherId === 771 ||
+    weatherId === 781
+  ) {
+    backgroundImage.classList.remove("sunnyBackground", "fewCloudsBackground");
+    backgroundImage.classList.add("fogBackground");
+  } else if (weatherMain === "Clear") {
+    backgroundImage.classList.remove("fewCloudsBackground");
     backgroundImage.classList.add("sunnyBackground");
   } else {
-    backgroundImage.classList.add("cloudyBackground");
+    backgroundImage.classList.add("fewCloudsBackground");
   }
 }
 
