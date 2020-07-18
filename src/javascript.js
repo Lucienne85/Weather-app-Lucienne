@@ -134,28 +134,23 @@ function showCurrentIcon(response) {
   let weatherId = response.data.weather[0].id;
   let weatherMain = response.data.weather[0].main;
   let weatherDescription = response.data.weather[0].description;
+  let currentIcon = document.querySelector("#current-icon");
+  currentIcon.setAttribute("alt", `${weatherDescription}`);
 
   if (weatherMain === "Thunderstorm") {
-    document.querySelector("#current-icon").src =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/001/216/original/thunder.png?1592138103";
+    currentIcon.setAttribute("src", "images/thunder.png");
   } else if (weatherMain === "Snow" || weatherDescription === "freezing rain") {
-    document.querySelector("#current-icon").src =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/001/220/original/ice.png?1592138257";
+    currentIcon.setAttribute("src", "images/ice.png");
   } else if (weatherMain === "Drizzle" || weatherMain === "Rain") {
-    document.querySelector("#current-icon").src =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/001/215/original/umbrella.png?1592138072";
+    currentIcon.setAttribute("src", "images/umbrella.png");
   } else if (weatherId === 801) {
-    document.querySelector("#current-icon").src =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/001/213/original/partialsun.png?1592137989";
+    currentIcon.setAttribute("src", "images/partialsun.png");
   } else if (weatherId === 802) {
-    document.querySelector("#current-icon").src =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/001/439/original/cloud.png?1594068705";
+    currentIcon.setAttribute("src", "images/cloud.png");
   } else if (weatherId === 803 || weatherId === 804) {
-    document.querySelector("#current-icon").src =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/001/214/original/cloudy.png?1592138043";
+    currentIcon.setAttribute("src", "images/cloudy.png");
   } else if (weatherMain === "Clear") {
-    document.querySelector("#current-icon").src =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/001/212/original/sun.png?1592137951";
+    currentIcon.setAttribute("src", "images/sun.png");
   } else if (
     weatherId === 701 ||
     weatherId === 711 ||
@@ -168,8 +163,7 @@ function showCurrentIcon(response) {
     weatherId === 771 ||
     weatherId === 781
   ) {
-    document.querySelector("#current-icon").src =
-      "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/001/440/original/fog.png?1594069940";
+    currentIcon.setAttribute("src", "images/fog.png");
   }
 }
 
@@ -203,7 +197,6 @@ function showWeather(response) {
   showCurrentStats(response);
   showCurrentIcon(response);
   showBackground(response);
-  console.log(response.data);
 }
 
 function callWeatherApi(city) {
