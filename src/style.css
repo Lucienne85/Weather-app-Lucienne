@@ -158,6 +158,8 @@ p {
 }
 .weatherType {
   font-size: 20px;
+}
+.weatherType:first-letter {
   text-transform: capitalize;
 }
 .funnyQuote {
