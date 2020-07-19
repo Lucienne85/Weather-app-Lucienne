@@ -130,27 +130,21 @@ function showBackground(response) {
   }
 }
 
-function showCurrentIcon(response) {
-  let weatherId = response.data.weather[0].id;
-  let weatherMain = response.data.weather[0].main;
-  let weatherDescription = response.data.weather[0].description;
-  let currentIcon = document.querySelector("#current-icon");
-  currentIcon.setAttribute("alt", `${weatherDescription}`);
-
+function determineIcon(weatherId, weatherMain, weatherDescription) {
   if (weatherMain === "Thunderstorm") {
-    currentIcon.setAttribute("src", "images/thunder.png");
+    return "images/thunder.png";
   } else if (weatherMain === "Snow" || weatherDescription === "freezing rain") {
-    currentIcon.setAttribute("src", "images/ice.png");
+    return "images/ice.png";
   } else if (weatherMain === "Drizzle" || weatherMain === "Rain") {
-    currentIcon.setAttribute("src", "images/umbrella.png");
+    return "images/umbrella.png";
   } else if (weatherId === 801) {
-    currentIcon.setAttribute("src", "images/partialsun.png");
+    return "images/partialsun.png";
   } else if (weatherId === 802) {
-    currentIcon.setAttribute("src", "images/cloud.png");
+    return "images/cloud.png";
   } else if (weatherId === 803 || weatherId === 804) {
-    currentIcon.setAttribute("src", "images/cloudy.png");
+    return "images/cloudy.png";
   } else if (weatherMain === "Clear") {
-    currentIcon.setAttribute("src", "images/sun.png");
+    return "images/sun.png";
   } else if (
     weatherId === 701 ||
     weatherId === 711 ||
@@ -163,8 +157,18 @@ function showCurrentIcon(response) {
     weatherId === 771 ||
     weatherId === 781
   ) {
-    currentIcon.setAttribute("src", "images/fog.png");
+    return "images/fog.png";
   }
+}
+
+function showCurrentIcon(response) {
+  let weatherId = response.data.weather[0].id;
+  let weatherMain = response.data.weather[0].main;
+  let weatherDescription = response.data.weather[0].description;
+  let currentIcon = document.querySelector("#current-icon");
+  let iconSource = determineIcon(weatherId, weatherMain, weatherDescription);
+  currentIcon.setAttribute("alt", `${weatherDescription}`);
+  currentIcon.setAttribute("src", `${iconSource}`);
 }
 
 function showCurrentStats(response) {
@@ -176,7 +180,7 @@ function showCurrentStats(response) {
   document.querySelector("#feels-like").innerHTML = `${feelTemp}°C`;
 }
 
-function showQuote(response) {
+function showWeatherType(response) {
   let weatherType = response.data.weather[0].description;
   document.querySelector("#weather-type").innerHTML = weatherType;
 }
@@ -193,34 +197,80 @@ function showCity(response) {
 function showWeather(response) {
   showCity(response);
   showTemperature(response);
-  showQuote(response);
+  showWeatherType(response);
   showCurrentStats(response);
   showCurrentIcon(response);
   showBackground(response);
 }
 
-function showForecast(response) {
-  console.log(response.data);
+function showNextHour(response) {
+  let weatherDescription = response.data.list[0].weather[0].description;
   let nextHourTemp = document.querySelector("#next-hour-temp");
-  let threeHourTemp = document.querySelector("#three-hour-temp");
-  let sixHourTemp = document.querySelector("#six-hour-temp");
-  let nineHourTemp = document.querySelector("#nine-hour-temp");
-  let twelveHourTemp = document.querySelector("#twelve-hour-temp");
   nextHourTemp.innerHTML = `${Math.round(
     response.data.list[0].main.temp_min
   )}°C - ${Math.round(response.data.list[0].main.temp_max)}°C`;
+  let nextHourIcon = document.querySelector("#next-hour-icon");
+  let iconSource = determineIcon(
+    response.data.list[0].weather[0].id,
+    response.data.list[0].weather[0].main,
+    response.data.list[0].weather[0].description
+  );
+  nextHourIcon.setAttribute("alt", `${weatherDescription}`);
+  nextHourIcon.setAttribute("src", `${iconSource}`);
+}
+function showThreeHour(response) {
+  let weatherDescription = response.data.list[1].weather[0].description;
+  let threeHourTemp = document.querySelector("#three-hour-temp");
   threeHourTemp.innerHTML = `${Math.round(
     response.data.list[1].main.temp_min
   )}°C - ${Math.round(response.data.list[1].main.temp_max)}°C`;
+  let threeHourIcon = document.querySelector("#three-hour-icon");
+  let iconSource = determineIcon(
+    response.data.list[1].weather[0].id,
+    response.data.list[1].weather[0].main,
+    response.data.list[1].weather[0].description
+  );
+  threeHourIcon.setAttribute("alt", `${weatherDescription}`);
+  threeHourIcon.setAttribute("src", `${iconSource}`);
+}
+
+function showSixHour(response) {
+  let weatherDescription = response.data.list[2].weather[0].description;
+  let sixHourTemp = document.querySelector("#six-hour-temp");
   sixHourTemp.innerHTML = `${Math.round(
     response.data.list[2].main.temp_min
   )}°C - ${Math.round(response.data.list[2].main.temp_max)}°C`;
+  let sixHourIcon = document.querySelector("#six-hour-icon");
+  let iconSource = determineIcon(
+    response.data.list[2].weather[0].id,
+    response.data.list[2].weather[0].main,
+    response.data.list[2].weather[0].description
+  );
+  sixHourIcon.setAttribute("alt", `${weatherDescription}`);
+  sixHourIcon.setAttribute("src", `${iconSource}`);
+}
+
+function showNineHour(response) {
+  let weatherDescription = response.data.list[3].weather[0].description;
+  let nineHourTemp = document.querySelector("#nine-hour-temp");
   nineHourTemp.innerHTML = `${Math.round(
     response.data.list[3].main.temp_min
   )}°C - ${Math.round(response.data.list[3].main.temp_max)}°C`;
-  twelveHourTemp.innerHTML = `${Math.round(
-    response.data.list[4].main.temp_min
-  )}°C - ${Math.round(response.data.list[4].main.temp_max)}°C`;
+  let nineHourIcon = document.querySelector("#nine-hour-icon");
+  let iconSource = determineIcon(
+    response.data.list[3].weather[0].id,
+    response.data.list[3].weather[0].main,
+    response.data.list[3].weather[0].description
+  );
+  nineHourIcon.setAttribute("alt", `${weatherDescription}`);
+  nineHourIcon.setAttribute("src", `${iconSource}`);
+}
+
+function showForecast(response) {
+  showNextHour(response);
+  showThreeHour(response);
+  showSixHour(response);
+  showNineHour(response);
 }
 
 function callWeatherApi(city) {
