@@ -53,111 +53,59 @@
         <button class="unitButton">°C</button> |
         <button class="unitButton fahrenheit">°F</button>
       </div>
-      <div class="totalToday">
-        <div class="blockWeatherNow" id="weather-now">
-          <div class="showNow">
-            <h2 class="city" id="searched-city">Amsterdam</h2>
-            <p class="currentDate" id="date-now">
-              Last updated: Sunday - July 5th 2020 - 21:47 PM
+      <div class="blockWeatherNow" id="weather-now">
+        <div class="showNow">
+          <h2 class="city" id="searched-city">Amsterdam</h2>
+          <p class="currentDate" id="date-now">
+            Last updated: Sunday - July 5th 2020 - 21:47 PM
+          </p>
+          <div class="weatherNow">
+            <h1 class="currentTemp" id="temp-now">25°C</h1>
+            <img
+              class="currentIcon"
+              id="current-icon"
+              src="images/sun.png"
+              alt="full sun"
+            />
+            <p class="weatherType" id="weather-type">
+              <strong>Sunny</strong>
             </p>
-            <div class="weatherNow">
-              <h1 class="currentTemp" id="temp-now">25°C</h1>
-              <img
-                class="currentIcon"
-                id="current-icon"
-                src="images/sun.png"
-                alt="full sun"
-              />
-              <p class="weatherType" id="weather-type">
-                <strong>Sunny</strong>
-              </p>
-            </div>
-            <button class="metricButton" id="fahrenheit-button">
-              Show Fahrenheit
-            </button>
-            <div class="row todayStats">
-              <div class="col-4">
-                <div class="humidity">
-                  <img
-                    class="humidityIcon"
-                    src="images/humidity.png"
-                    alt="humidity icon"
-                  />
-                  <br />
-                  <span class="statType">Humidity</span> <br />
-                  <span class="stats" id="humidity">30%</span>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="wind">
-                  <img class="windIcon" src="images/wind.png" alt="wind icon" />
-                  <br />
-                  <span class="statType">Wind</span> <br />
-                  <span class="stats" id="wind">5 km/h</span>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="feelsLike">
-                  <img
-                    class="feelsLikeIcon"
-                    src="images/thermometer.png"
-                    alt="thermometer icon"
-                  />
-                  <br />
-                  <span class="statType">Feels like</span> <br />
-                  <span class="stats" id="feels-like">28°C</span>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-        <div class="blockWeatherToday">
-          <div class="row upcomingHours">
-            <div class="col-2">
-              <span class="time">1PM</span>
-              <img class="hourIcons" src="images/sun.png" alt="full sun" />
-              <span class="hourTemp">25°C</span>
+          <button class="metricButton" id="fahrenheit-button">
+            Show Fahrenheit
+          </button>
+          <div class="row todayStats">
+            <div class="col-4">
+              <div class="humidity">
+                <img
+                  class="humidityIcon"
+                  src="images/humidity.png"
+                  alt="humidity icon"
+                />
+                <br />
+                <span class="statType">Humidity</span> <br />
+                <span class="stats" id="humidity">30%</span>
+              </div>
             </div>
-            <div class="col-2">
-              <span class="time">2PM</span>
-              <img
-                class="hourIcons"
-                src="images/partialsun.png"
-                alt="partial sun"
-              />
-              <span class="hourTemp">22°C</span>
+            <div class="col-4">
+              <div class="wind">
+                <img class="windIcon" src="images/wind.png" alt="wind icon" />
+                <br />
+                <span class="statType">Wind</span> <br />
+                <span class="stats" id="wind">5 km/h</span>
+              </div>
             </div>
-            <div class="col-2">
-              <span class="time">3PM</span>
-              <img
-                class="hourIcons"
-                src="images/partialsun.png"
-                alt="partial sun"
-              />
-              <span class="hourTemp">22°C</span>
-            </div>
-            <div class="col-2">
-              <span class="time">4PM</span>
-              <img class="hourIcons" src="images/cloudy.png" alt="cloudy" />
-              <span class="hourTemp">20°C</span>
-            </div>
-            <div class="col-2">
-              <span class="time">5PM</span>
-              <img
-                class="hourIcons"
-                src="images/umbrella.png"
-                alt="umbrella with rain"
-              />
-              <span class="hourTemp">18°C</span>
-            </div>
-            <div class="col-2">
-              <span class="time">6PM</span>
-              <img
-                class="hourIcons"
-                src="images/thunder.png"
-                alt="thunderstorm"
-              />
-              <span class="hourTemp">18°C</span>
+            <div class="col-4">
+              <div class="feelsLike">
+                <img
+                  class="feelsLikeIcon"
+                  src="images/thermometer.png"
+                  alt="thermometer icon"
+                />
+                <br />
+                <span class="statType">Feels like</span> <br />
+                <span class="stats" id="feels-like">28°C</span>
+              </div>
             </div>
           </div>
         </div>
@@ -165,7 +113,7 @@
       <div class="upcomingDays">
         <div class="row">
           <div class="col-6">
-            <h5>Tomorrow</h5>
+            <h5>The next hour</h5>
           </div>
           <div class="temperature col-4">
             13°C / 18°C
@@ -177,7 +125,7 @@
         <hr />
         <div class="row">
           <div class="col-6">
-            <h5>Sunday</h5>
+            <h5>In 3 hours</h5>
           </div>
           <div class="temperature col-4">
             -1°C / 2°C
@@ -189,7 +137,7 @@
         <hr />
         <div class="row">
           <div class="col-6">
-            <h5>Monday</h5>
+            <h5>In 6 hours</h5>
           </div>
           <div class="temperature col-4">
             6°C / 14°C
@@ -201,10 +149,26 @@
         <hr />
         <div class="row">
           <div class="col-6">
-            <h5>Tuesday</h5>
+            <h5>In 9 hours</h5>
           </div>
           <div class="temperature col-4">
             10°C / 16°C
+          </div>
+          <div class="col-2">
+            <img
+              class="dayIcons"
+              src="images/partialsun.png"
+              alt="partial sun"
+            />
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-6">
+            <h5>In 12 hours</h5>
+          </div>
+          <div class="temperature col-4">
+            20°C / 25°C
           </div>
           <div class="col-2">
             <img
