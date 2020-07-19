@@ -201,6 +201,26 @@ function showWeather(response) {
 
 function showForecast(response) {
   console.log(response.data);
+  let nextHourTemp = document.querySelector("#next-hour-temp");
+  let threeHourTemp = document.querySelector("#three-hour-temp");
+  let sixHourTemp = document.querySelector("#six-hour-temp");
+  let nineHourTemp = document.querySelector("#nine-hour-temp");
+  let twelveHourTemp = document.querySelector("#twelve-hour-temp");
+  nextHourTemp.innerHTML = `${Math.round(
+    response.data.list[0].main.temp_min
+  )}°C - ${Math.round(response.data.list[0].main.temp_max)}°C`;
+  threeHourTemp.innerHTML = `${Math.round(
+    response.data.list[1].main.temp_min
+  )}°C - ${Math.round(response.data.list[1].main.temp_max)}°C`;
+  sixHourTemp.innerHTML = `${Math.round(
+    response.data.list[2].main.temp_min
+  )}°C - ${Math.round(response.data.list[2].main.temp_max)}°C`;
+  nineHourTemp.innerHTML = `${Math.round(
+    response.data.list[3].main.temp_min
+  )}°C - ${Math.round(response.data.list[3].main.temp_max)}°C`;
+  twelveHourTemp.innerHTML = `${Math.round(
+    response.data.list[4].main.temp_min
+  )}°C - ${Math.round(response.data.list[4].main.temp_max)}°C`;
 }
 
 function callWeatherApi(city) {

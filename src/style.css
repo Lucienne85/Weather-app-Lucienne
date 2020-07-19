@@ -201,8 +201,7 @@ p {
 .humidityIcon,
 .windIcon,
 .feelsLikeIcon,
-.hourIcons,
-.dayIcons {
+.hourIcons {
   max-width: 35px;
   height: 35px;
 }
@@ -211,9 +210,9 @@ p {
 .feelsLikeIcon {
   margin-top: 10px;
 }
-.hourIcons,
-.dayIcons {
+.hourIcons {
   margin: 5px 0;
+  opacity: 0.6;
 }
 
 .statType {
@@ -248,9 +247,11 @@ h5,
 .temperature {
   font-size: 15px;
   line-height: 3;
+  text-align: center;
 }
-.dayIcons {
-  opacity: 0.5;
+.showIcon {
+  text-align: right;
+  padding-right: 40px;
 }
 hr {
   margin: 0 10px;
