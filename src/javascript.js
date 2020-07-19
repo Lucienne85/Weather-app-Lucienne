@@ -199,10 +199,17 @@ function showWeather(response) {
   showBackground(response);
 }
 
+function showForecast(response) {
+  console.log(response.data);
+}
+
 function callWeatherApi(city) {
   let apiKey = "1192a0652f0754927fef474420498ea7";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeather);
+
+  let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+  axios.get(forecastURL).then(showForecast);
 }
 
 function handleSubmit(event) {
