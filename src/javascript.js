@@ -230,4 +230,31 @@ searchForm.addEventListener("submit", handleSubmit);
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
+function showCelsius(event) {
+  event.preventDefault();
+  let celsiusButton = document.querySelector("#celsius-button");
+  document.querySelector("#celsius-button").removeAttribute("id");
+  celsiusButton.id = "fahrenheit-button";
+  celsiusButton.innerHTML = `Show Fahrenheit`;
+  alert("Showing you celsius!");
+}
+
+function listentoCelsius() {
+  let celsiusButton = document.querySelector("#celsius-button");
+  celsiusButton.addEventListener("click", showCelsius);
+}
+
+function showFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitButton = document.querySelector("#fahrenheit-button");
+  document.querySelector("#fahrenheit-button").removeAttribute("id");
+  fahrenheitButton.id = "celsius-button";
+  fahrenheitButton.innerHTML = `Show Celsius`;
+  alert("Showing you fahrenheit!");
+  listentoCelsius();
+}
+
+let fahrenheitButton = document.querySelector("#fahrenheit-button");
+fahrenheitButton.addEventListener("click", showFahrenheit);
+
 callWeatherApi("Amsterdam");

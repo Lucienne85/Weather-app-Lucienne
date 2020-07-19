@@ -29,6 +29,7 @@ p {
 .totalToday,
 .searchbar,
 .weatherNow,
+.metricButton,
 .humidity,
 .wind,
 .feelsLike {
@@ -147,7 +148,8 @@ p {
 .weatherNow,
 .humidity,
 .wind,
-.feelsLike {
+.feelsLike,
+.metricButton {
   background-color: rgba(255, 255, 255, 0.7);
   transition: 180ms ease-in;
 }
@@ -166,6 +168,14 @@ p {
   margin-top: 10px;
   font-size: 18px;
 }
+.metricButton {
+  display: block;
+  margin: 0 auto;
+  margin-top: 5px;
+  border: none;
+  width: 108px;
+  font-size: 14px;
+}
 .todayStats {
   text-align: center;
   margin: 25px 15px;
@@ -179,7 +189,8 @@ p {
 .weatherNow:hover,
 .humidity:hover,
 .wind:hover,
-.feelsLike:hover {
+.feelsLike:hover,
+.metricButton:hover {
   background-color: rgba(255, 255, 255, 1);
 }
 .currentIcon {
