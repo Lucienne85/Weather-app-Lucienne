@@ -310,25 +310,24 @@ currentLocationButton.addEventListener("click", getCurrentLocation);
 function showCelsius(event) {
   event.preventDefault();
   let celsiusButton = document.querySelector("#celsius-button");
-  document.querySelector("#celsius-button").removeAttribute("id");
+  celsiusButton.removeEventListener("click", showCelsius);
   celsiusButton.id = "fahrenheit-button";
   celsiusButton.innerHTML = `Show Fahrenheit`;
+  document
+    .querySelector("#fahrenheit-button")
+    .addEventListener("click", showFahrenheit);
   alert("Showing you celsius!");
-}
-
-function listentoCelsius() {
-  let celsiusButton = document.querySelector("#celsius-button");
-  celsiusButton.addEventListener("click", showCelsius);
 }
 
 function showFahrenheit(event) {
   event.preventDefault();
-  let fahrenheitButton = document.querySelector("#fahrenheit-button");
-  document.querySelector("#fahrenheit-button").removeAttribute("id");
+  fahrenheitButton.removeEventListener("click", showFahrenheit);
   fahrenheitButton.id = "celsius-button";
   fahrenheitButton.innerHTML = `Show Celsius`;
   alert("Showing you fahrenheit!");
-  listentoCelsius();
+  document
+    .querySelector("#celsius-button")
+    .addEventListener("click", showCelsius);
 }
 
 let fahrenheitButton = document.querySelector("#fahrenheit-button");
