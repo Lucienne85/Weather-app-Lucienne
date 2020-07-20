@@ -207,6 +207,7 @@ function showCity(response) {
 
 function showWeather(response) {
   currentCelsiusTemp = response.data.main.temp;
+  feelsLikeTemp = response.data.main.feels_like;
   showCity(response);
   showTemperature(response);
   showWeatherType(response);
@@ -325,8 +326,12 @@ function showCelsius(event) {
   celsiusButton.removeEventListener("click", showCelsius);
   celsiusButton.id = "fahrenheit-button";
   celsiusButton.innerHTML = `Show Fahrenheit`;
-  let currentTemp = document.querySelector("#temp-now");
-  currentTemp.innerHTML = `${Math.round(currentCelsiusTemp)}°C`;
+  document.querySelector("#temp-now").innerHTML = `${Math.round(
+    currentCelsiusTemp
+  )}°C`;
+  document.querySelector("#feels-like").innerHTML = `${Math.round(
+    feelsLikeTemp
+  )}°C`;
   document
     .querySelector("#fahrenheit-button")
     .addEventListener("click", showFahrenheit);
@@ -338,14 +343,18 @@ function showFahrenheit(event) {
   fahrenheitButton.id = "celsius-button";
   fahrenheitButton.innerHTML = `Show Celsius`;
   let currentFahrenheitTemp = Math.round(currentCelsiusTemp * 1.8 + 32);
-  let currentTemp = document.querySelector("#temp-now");
-  currentTemp.innerHTML = `${currentFahrenheitTemp}°F`;
+  let feelsLikeFahrenheitTemp = Math.round(feelsLikeTemp * 1.8 + 32);
+  document.querySelector("#temp-now").innerHTML = `${currentFahrenheitTemp}°F`;
+  document.querySelector(
+    "#feels-like"
+  ).innerHTML = `${feelsLikeFahrenheitTemp}°F`;
   document
     .querySelector("#celsius-button")
     .addEventListener("click", showCelsius);
 }
 
 let currentCelsiusTemp = null;
+let feelsLikeTemp = null;
 
 let fahrenheitButton = document.querySelector("#fahrenheit-button");
 fahrenheitButton.addEventListener("click", showFahrenheit);
