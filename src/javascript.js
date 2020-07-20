@@ -188,6 +188,17 @@ function showWeatherType(response) {
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   document.querySelector(`#temp-now`).innerHTML = `${temperature}°C`;
+  let currentID = document.getElementsByClassName("metricButton")[0].id;
+  if (currentID === `celsius-button`) {
+    let celsiusButton = document.querySelector("#celsius-button");
+    celsiusButton.removeEventListener("click", showCelsius);
+    celsiusButton.id = "fahrenheit-button";
+    celsiusButton.innerHTML = `Show Fahrenheit`;
+    document
+      .querySelector("#fahrenheit-button")
+      .addEventListener("click", showFahrenheit);
+  }
+  console.log(currentID);
 }
 
 function showCity(response) {
@@ -195,6 +206,7 @@ function showCity(response) {
 }
 
 function showWeather(response) {
+  currentCelsiusTemp = response.data.main.temp;
   showCity(response);
   showTemperature(response);
   showWeatherType(response);
@@ -313,10 +325,11 @@ function showCelsius(event) {
   celsiusButton.removeEventListener("click", showCelsius);
   celsiusButton.id = "fahrenheit-button";
   celsiusButton.innerHTML = `Show Fahrenheit`;
+  let currentTemp = document.querySelector("#temp-now");
+  currentTemp.innerHTML = `${Math.round(currentCelsiusTemp)}°C`;
   document
     .querySelector("#fahrenheit-button")
     .addEventListener("click", showFahrenheit);
-  alert("Showing you celsius!");
 }
 
 function showFahrenheit(event) {
@@ -324,11 +337,15 @@ function showFahrenheit(event) {
   fahrenheitButton.removeEventListener("click", showFahrenheit);
   fahrenheitButton.id = "celsius-button";
   fahrenheitButton.innerHTML = `Show Celsius`;
-  alert("Showing you fahrenheit!");
+  let currentFahrenheitTemp = Math.round(currentCelsiusTemp * 1.8 + 32);
+  let currentTemp = document.querySelector("#temp-now");
+  currentTemp.innerHTML = `${currentFahrenheitTemp}°F`;
   document
     .querySelector("#celsius-button")
     .addEventListener("click", showCelsius);
 }
+
+let currentCelsiusTemp = null;
 
 let fahrenheitButton = document.querySelector("#fahrenheit-button");
 fahrenheitButton.addEventListener("click", showFahrenheit);

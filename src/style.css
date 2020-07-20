@@ -43,7 +43,7 @@ p {
   align-items: center;
 }
 .searchForm {
-  max-width: 300px;
+  width: 300px;
 }
 .form-control {
   display: inline-block;
