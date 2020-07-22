@@ -172,21 +172,25 @@ function showBackground(response) {
   }
 }
 
-function determineIcon(weatherId, weatherMain, weatherDescription) {
+function determineIcon(weatherId, weatherMain, weatherDescription, iconId) {
   if (weatherMain === "Thunderstorm") {
     return "images/thunder.png";
   } else if (weatherMain === "Snow" || weatherDescription === "freezing rain") {
     return "images/ice.png";
   } else if (weatherMain === "Drizzle" || weatherMain === "Rain") {
     return "images/umbrella.png";
-  } else if (weatherId === 801) {
+  } else if (iconId === "02d") {
     return "images/partialsun.png";
+  } else if (iconId === "02n") {
+    return "images/halfmoon.png";
   } else if (weatherId === 802) {
     return "images/cloud.png";
   } else if (weatherId === 803 || weatherId === 804) {
     return "images/cloudy.png";
-  } else if (weatherMain === "Clear") {
+  } else if (iconId === "01d") {
     return "images/sun.png";
+  } else if (iconId === "01n") {
+    return "images/moon.png";
   } else if (
     weatherId === 701 ||
     weatherId === 711 ||
@@ -207,8 +211,14 @@ function showCurrentIcon(response) {
   let weatherId = response.data.weather[0].id;
   let weatherMain = response.data.weather[0].main;
   let weatherDescription = response.data.weather[0].description;
+  let iconId = response.data.weather[0].icon;
   let currentIcon = document.querySelector("#current-icon");
-  let iconSource = determineIcon(weatherId, weatherMain, weatherDescription);
+  let iconSource = determineIcon(
+    weatherId,
+    weatherMain,
+    weatherDescription,
+    iconId
+  );
   currentIcon.setAttribute("alt", `${weatherDescription}`);
   currentIcon.setAttribute("src", `${iconSource}`);
 }
@@ -270,7 +280,8 @@ function showNextHour(response) {
   let iconSource = determineIcon(
     response.data.list[0].weather[0].id,
     response.data.list[0].weather[0].main,
-    response.data.list[0].weather[0].description
+    response.data.list[0].weather[0].description,
+    response.data.list[0].weather[0].icon
   );
   nextHourIcon.setAttribute("src", `${iconSource}`);
   nextHourIcon.setAttribute("alt", `${weatherDescription}`);
@@ -286,7 +297,8 @@ function showThreeHour(response) {
   let iconSource = determineIcon(
     response.data.list[1].weather[0].id,
     response.data.list[1].weather[0].main,
-    response.data.list[1].weather[0].description
+    response.data.list[1].weather[0].description,
+    response.data.list[1].weather[0].icon
   );
   threeHourIcon.setAttribute("src", `${iconSource}`);
   threeHourIcon.setAttribute("alt", `${weatherDescription}`);
@@ -303,7 +315,8 @@ function showSixHour(response) {
   let iconSource = determineIcon(
     response.data.list[2].weather[0].id,
     response.data.list[2].weather[0].main,
-    response.data.list[2].weather[0].description
+    response.data.list[2].weather[0].description,
+    response.data.list[2].weather[0].icon
   );
   sixHourIcon.setAttribute("src", `${iconSource}`);
   sixHourIcon.setAttribute("alt", `${weatherDescription}`);
@@ -320,7 +333,8 @@ function showNineHour(response) {
   let iconSource = determineIcon(
     response.data.list[3].weather[0].id,
     response.data.list[3].weather[0].main,
-    response.data.list[3].weather[0].description
+    response.data.list[3].weather[0].description,
+    response.data.list[3].weather[0].icon
   );
   nineHourIcon.setAttribute("src", `${iconSource}`);
   nineHourIcon.setAttribute("alt", `${weatherDescription}`);
@@ -331,6 +345,8 @@ function showForecast(response) {
   showThreeHour(response);
   showSixHour(response);
   showNineHour(response);
+  console.log(response.data.list[0].weather[0].icon);
+  console.log(response.data.list[1].weather[0].icon);
 }
 
 function callWeatherApi(city) {
