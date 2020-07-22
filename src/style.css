@@ -115,6 +115,15 @@ p {
 .fewCloudsBackground {
   background-image: url("../images/FewCloudsBackground.jpg");
 }
+.scatteredBackground {
+  background-image: url("../images/ScatteredCloud.png");
+}
+.brokencloudBackground {
+  background-image: url("../images/BrokenCloud.png");
+}
+.overcastBackground {
+  background-image: url("../images/Overcast.jpg");
+}
 .blockWeatherNow::before {
   content: "";
   position: absolute;
