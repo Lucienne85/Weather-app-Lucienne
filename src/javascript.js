@@ -172,7 +172,7 @@ function showBackground(response) {
   }
 }
 
-function determineIcon(weatherId, weatherMain, weatherDescription, iconId) {
+function determineIcon(weatherMain, weatherDescription, iconId) {
   if (weatherMain === "Thunderstorm") {
     return "images/thunder.png";
   } else if (weatherMain === "Snow" || weatherDescription === "freezing rain") {
@@ -183,42 +183,25 @@ function determineIcon(weatherId, weatherMain, weatherDescription, iconId) {
     return "images/partialsun.png";
   } else if (iconId === "02n") {
     return "images/halfmoon.png";
-  } else if (weatherId === 802) {
+  } else if (iconId === "03d" || iconId === "03n") {
     return "images/cloud.png";
-  } else if (weatherId === 803 || weatherId === 804) {
+  } else if (iconId === "04d" || iconId === "04n") {
     return "images/cloudy.png";
   } else if (iconId === "01d") {
     return "images/sun.png";
   } else if (iconId === "01n") {
     return "images/moon.png";
-  } else if (
-    weatherId === 701 ||
-    weatherId === 711 ||
-    weatherId === 721 ||
-    weatherId === 731 ||
-    weatherId === 741 ||
-    weatherId === 751 ||
-    weatherId === 761 ||
-    weatherId === 762 ||
-    weatherId === 771 ||
-    weatherId === 781
-  ) {
+  } else if (iconId === "50d" || iconId === "50n") {
     return "images/fog.png";
   }
 }
 
 function showCurrentIcon(response) {
-  let weatherId = response.data.weather[0].id;
   let weatherMain = response.data.weather[0].main;
   let weatherDescription = response.data.weather[0].description;
   let iconId = response.data.weather[0].icon;
   let currentIcon = document.querySelector("#current-icon");
-  let iconSource = determineIcon(
-    weatherId,
-    weatherMain,
-    weatherDescription,
-    iconId
-  );
+  let iconSource = determineIcon(weatherMain, weatherDescription, iconId);
   currentIcon.setAttribute("alt", `${weatherDescription}`);
   currentIcon.setAttribute("src", `${iconSource}`);
 }
@@ -267,6 +250,7 @@ function showWeather(response) {
   showCurrentStats(response);
   showCurrentIcon(response);
   showBackground(response);
+  console.log(response.data.weather[0].icon);
 }
 
 function showNextHour(response) {
@@ -278,7 +262,6 @@ function showNextHour(response) {
   )}°C - ${Math.round(nextHourMaxTemp)}°C`;
   let nextHourIcon = document.querySelector("#next-hour-icon");
   let iconSource = determineIcon(
-    response.data.list[0].weather[0].id,
     response.data.list[0].weather[0].main,
     response.data.list[0].weather[0].description,
     response.data.list[0].weather[0].icon
@@ -295,7 +278,6 @@ function showThreeHour(response) {
   )}°C - ${Math.round(threeHourMaxTemp)}°C`;
   let threeHourIcon = document.querySelector("#three-hour-icon");
   let iconSource = determineIcon(
-    response.data.list[1].weather[0].id,
     response.data.list[1].weather[0].main,
     response.data.list[1].weather[0].description,
     response.data.list[1].weather[0].icon
@@ -313,7 +295,6 @@ function showSixHour(response) {
   )}°C - ${Math.round(sixHourMaxTemp)}°C`;
   let sixHourIcon = document.querySelector("#six-hour-icon");
   let iconSource = determineIcon(
-    response.data.list[2].weather[0].id,
     response.data.list[2].weather[0].main,
     response.data.list[2].weather[0].description,
     response.data.list[2].weather[0].icon
@@ -331,7 +312,6 @@ function showNineHour(response) {
   )}°C - ${Math.round(nineHourMaxTemp)}°C`;
   let nineHourIcon = document.querySelector("#nine-hour-icon");
   let iconSource = determineIcon(
-    response.data.list[3].weather[0].id,
     response.data.list[3].weather[0].main,
     response.data.list[3].weather[0].description,
     response.data.list[3].weather[0].icon
@@ -345,8 +325,6 @@ function showForecast(response) {
   showThreeHour(response);
   showSixHour(response);
   showNineHour(response);
-  console.log(response.data.list[0].weather[0].icon);
-  console.log(response.data.list[1].weather[0].icon);
 }
 
 function callWeatherApi(city) {
