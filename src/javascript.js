@@ -61,6 +61,7 @@ currentDate.innerHTML = `Last updated: ${currentDay} - ${currentMonth} ${date}${
 function showBackground(response) {
   let weatherMain = response.data.weather[0].main;
   let weatherId = response.data.weather[0].id;
+  let iconId = response.data.weather[0].icon;
   let backgroundImage = document.querySelector("#weather-now");
 
   if (weatherMain === "Thunderstorm") {
@@ -71,7 +72,9 @@ function showBackground(response) {
       "snowBackground",
       "fogBackground",
       "sunnyBackground",
+      "clearNightBackground",
       "fewCloudsBackground",
+      "cloudyNightBackground",
       "brokencloudBackground",
       "scatteredBackground",
       "overcastBackground"
@@ -84,7 +87,9 @@ function showBackground(response) {
       "snowBackground",
       "fogBackground",
       "sunnyBackground",
+      "clearNightBackground",
       "fewCloudsBackground",
+      "cloudyNightBackground",
       "brokencloudBackground",
       "scatteredBackground",
       "overcastBackground"
@@ -96,7 +101,9 @@ function showBackground(response) {
       "snowBackground",
       "fogBackground",
       "sunnyBackground",
+      "clearNightBackground",
       "fewCloudsBackground",
+      "cloudyNightBackground",
       "brokencloudBackground",
       "scatteredBackground",
       "overcastBackground"
@@ -107,7 +114,9 @@ function showBackground(response) {
       "snowBackground",
       "fogBackground",
       "sunnyBackground",
+      "clearNightBackground",
       "fewCloudsBackground",
+      "cloudyNightBackground",
       "brokencloudBackground",
       "scatteredBackground",
       "overcastBackground"
@@ -117,47 +126,59 @@ function showBackground(response) {
     backgroundImage.classList.remove(
       "fogBackground",
       "sunnyBackground",
+      "clearNightBackground",
       "fewCloudsBackground",
+      "cloudyNightBackground",
       "brokencloudBackground",
       "scatteredBackground",
       "overcastBackground"
     );
     backgroundImage.classList.add("snowBackground");
-  } else if (
-    weatherId === 701 ||
-    weatherId === 711 ||
-    weatherId === 721 ||
-    weatherId === 731 ||
-    weatherId === 741 ||
-    weatherId === 751 ||
-    weatherId === 761 ||
-    weatherId === 762 ||
-    weatherId === 771 ||
-    weatherId === 781
-  ) {
+  } else if (iconId === "50d" || iconId === "50n") {
     backgroundImage.classList.remove(
       "sunnyBackground",
+      "clearNightBackground",
       "fewCloudsBackground",
+      "cloudyNightBackground",
       "brokencloudBackground",
       "scatteredBackground",
       "overcastBackground"
     );
     backgroundImage.classList.add("fogBackground");
-  } else if (weatherMain === "Clear") {
+  } else if (iconId === "01d") {
     backgroundImage.classList.remove(
+      "clearNightBackground",
       "fewCloudsBackground",
+      "cloudyNightBackground",
       "brokencloudBackground",
       "scatteredBackground",
       "overcastBackground"
     );
     backgroundImage.classList.add("sunnyBackground");
-  } else if (weatherId === 801) {
+  } else if (iconId === "01n") {
     backgroundImage.classList.remove(
+      "fewCloudsBackground",
+      "cloudyNightBackground",
+      "brokencloudBackground",
+      "scatteredBackground",
+      "overcastBackground"
+    );
+    backgroundImage.classList.add("clearNightBackground");
+  } else if (iconId === "02d") {
+    backgroundImage.classList.remove(
+      "cloudyNightBackground",
       "brokencloudBackground",
       "scatteredBackground",
       "overcastBackground"
     );
     backgroundImage.classList.add("fewCloudsBackground");
+  } else if (iconId === "02n") {
+    backgroundImage.classList.remove(
+      "brokencloudBackground",
+      "scatteredBackground",
+      "overcastBackground"
+    );
+    backgroundImage.classList.add("cloudyNightBackground");
   } else if (weatherId === 802) {
     backgroundImage.classList.remove(
       "brokencloudBackground",

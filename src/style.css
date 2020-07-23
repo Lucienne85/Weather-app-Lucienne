@@ -12,7 +12,7 @@ p {
 }
 .header {
   text-align: center;
-  margin: 30px 0 10px 0;
+  margin: 20px 0 10px 0;
   font-size: 55px;
   color: #68809b;
   text-shadow: 2px 2px 10px darkgray;
@@ -112,8 +112,14 @@ p {
 .sunnyBackground {
   background-image: url("../images/SunnyBackground.jpg");
 }
+.clearNightBackground {
+  background-image: url("../images/ClearNight.png");
+}
 .fewCloudsBackground {
   background-image: url("../images/FewCloudsBackground.jpg");
+}
+.cloudyNightBackground {
+  background-image: url("../images/CloudyNight.png");
 }
 .scatteredBackground {
   background-image: url("../images/ScatteredCloud.png");
