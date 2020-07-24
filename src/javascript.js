@@ -1,62 +1,66 @@
-let now = new Date();
-let currentDate = document.querySelector("#date-now");
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "Deceber",
-];
-
-function getType(date) {
-  if (date === 1 || date === 21 || date === 31) {
-    return "st";
-  } else if (date === 2 || date === 22) {
-    return "nd";
-  } else if (date === 3 || date === 23) {
-    return "rd";
-  } else return "th";
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  return date.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 }
 
-let currentDay = days[now.getDay()];
-let currentMonth = months[now.getMonth()];
-let date = now.getDate();
-let dateType = getType(date);
-let year = now.getFullYear();
-let hour = now.getHours();
-if (hour < 10) {
-  hour = `0${hour}`;
-}
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-let amPm = " ";
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
-if (hour < 12) {
-  amPm = "AM";
-} else amPm = "PM";
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "Deceber",
+  ];
 
-currentDate.innerHTML = `Last updated: ${currentDay} - ${currentMonth} ${date}${dateType} ${year} - ${hour}:${minutes} ${amPm}`;
+  function getType(date) {
+    if (date === 1 || date === 21 || date === 31) {
+      return "st";
+    } else if (date === 2 || date === 22) {
+      return "nd";
+    } else if (date === 3 || date === 23) {
+      return "rd";
+    } else return "th";
+  }
+
+  let currentDay = days[now.getDay()];
+  let currentMonth = months[now.getMonth()];
+  let date = now.getDate();
+  let dateType = getType(date);
+  let year = now.getFullYear();
+
+  let formattedTime = formatHours(timestamp);
+  console.log(formattedTime);
+
+  return `Last updated: ${currentDay} - ${currentMonth} ${date}${dateType} ${year} - ${formattedTime}`;
+}
+
+function showUpdatedTime(response) {
+  let currentDate = document.querySelector("#date-now");
+  currentDate.innerHTML = formatDate(response.data.dt * 1000);
+}
 
 function showBackground(response) {
   let weatherMain = response.data.weather[0].main;
@@ -325,6 +329,7 @@ function showWeather(response) {
   showCurrentStats(response);
   showCurrentIcon(response);
   showBackground(response);
+  showUpdatedTime(response);
 }
 
 function showNextHour(response) {
