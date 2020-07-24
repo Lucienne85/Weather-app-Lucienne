@@ -74,10 +74,13 @@ function showBackground(response) {
       "sunnyBackground",
       "clearNightBackground",
       "fewCloudsBackground",
-      "cloudyNightBackground",
-      "brokencloudBackground",
+      "fewCloudsNightBackground",
       "scatteredBackground",
-      "overcastBackground"
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("thunderBackground");
   } else if (weatherMain === "Drizzle") {
@@ -89,10 +92,13 @@ function showBackground(response) {
       "sunnyBackground",
       "clearNightBackground",
       "fewCloudsBackground",
-      "cloudyNightBackground",
-      "brokencloudBackground",
+      "fewCloudsNightBackground",
       "scatteredBackground",
-      "overcastBackground"
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("drizzleBackground");
   } else if (weatherId === 511) {
@@ -103,10 +109,13 @@ function showBackground(response) {
       "sunnyBackground",
       "clearNightBackground",
       "fewCloudsBackground",
-      "cloudyNightBackground",
-      "brokencloudBackground",
+      "fewCloudsNightBackground",
       "scatteredBackground",
-      "overcastBackground"
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("freezingRainBackground");
   } else if (weatherMain === "Rain") {
@@ -116,10 +125,13 @@ function showBackground(response) {
       "sunnyBackground",
       "clearNightBackground",
       "fewCloudsBackground",
-      "cloudyNightBackground",
-      "brokencloudBackground",
+      "fewCloudsNightBackground",
       "scatteredBackground",
-      "overcastBackground"
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("rainBackground");
   } else if (weatherMain === "Snow") {
@@ -128,10 +140,13 @@ function showBackground(response) {
       "sunnyBackground",
       "clearNightBackground",
       "fewCloudsBackground",
-      "cloudyNightBackground",
-      "brokencloudBackground",
+      "fewCloudsNightBackground",
       "scatteredBackground",
-      "overcastBackground"
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("snowBackground");
   } else if (iconId === "50d" || iconId === "50n") {
@@ -139,57 +154,96 @@ function showBackground(response) {
       "sunnyBackground",
       "clearNightBackground",
       "fewCloudsBackground",
-      "cloudyNightBackground",
-      "brokencloudBackground",
+      "fewCloudsNightBackground",
       "scatteredBackground",
-      "overcastBackground"
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("fogBackground");
   } else if (iconId === "01d") {
     backgroundImage.classList.remove(
       "clearNightBackground",
       "fewCloudsBackground",
-      "cloudyNightBackground",
-      "brokencloudBackground",
+      "fewCloudsNightBackground",
       "scatteredBackground",
-      "overcastBackground"
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("sunnyBackground");
   } else if (iconId === "01n") {
     backgroundImage.classList.remove(
       "fewCloudsBackground",
-      "cloudyNightBackground",
-      "brokencloudBackground",
+      "fewCloudsNightBackground",
       "scatteredBackground",
-      "overcastBackground"
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("clearNightBackground");
   } else if (iconId === "02d") {
     backgroundImage.classList.remove(
-      "cloudyNightBackground",
-      "brokencloudBackground",
+      "fewCloudsNightBackground",
       "scatteredBackground",
-      "overcastBackground"
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("fewCloudsBackground");
   } else if (iconId === "02n") {
     backgroundImage.classList.remove(
-      "brokencloudBackground",
       "scatteredBackground",
-      "overcastBackground"
-    );
-    backgroundImage.classList.add("cloudyNightBackground");
-  } else if (weatherId === 802) {
-    backgroundImage.classList.remove(
+      "scatteredNightBackground",
       "brokencloudBackground",
-      "overcastBackground"
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
+    );
+    backgroundImage.classList.add("fewCloudsNightBackground");
+  } else if (iconId === "03d") {
+    backgroundImage.classList.remove(
+      "scatteredNightBackground",
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
     );
     backgroundImage.classList.add("scatteredBackground");
-  } else if (weatherId === 803) {
-    backgroundImage.classList.remove("overcastBackground");
+  } else if (iconId === "03n") {
+    backgroundImage.classList.remove(
+      "brokencloudBackground",
+      "brokencloudNightBackground",
+      "overcastBackground",
+      "overcastNightBackground"
+    );
+    backgroundImage.classList.add("scatteredNightBackground");
+  } else if (weatherId === 803 && iconId === "04d") {
+    backgroundImage.classList.remove(
+      "overcastBackground",
+      "overcastNightBackground",
+      "brokencloudNightBackground"
+    );
     backgroundImage.classList.add("brokencloudBackground");
-  } else {
+  } else if (weatherId === 803 && iconId === "04n") {
+    backgroundImage.classList.remove(
+      "overcastBackground",
+      "overcastNightBackground"
+    );
+    backgroundImage.classList.add("brokencloudNightBackground");
+  } else if (weatherId === 804 && iconId === "04d") {
+    backgroundImage.classList.remove("overcastNightBackground");
     backgroundImage.classList.add("overcastBackground");
+  } else {
+    backgroundImage.classList.add("overcastNightBackground");
   }
 }
 
@@ -271,7 +325,6 @@ function showWeather(response) {
   showCurrentStats(response);
   showCurrentIcon(response);
   showBackground(response);
-  console.log(response.data.weather[0].icon);
 }
 
 function showNextHour(response) {

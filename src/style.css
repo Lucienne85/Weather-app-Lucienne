@@ -91,6 +91,15 @@ p {
   position: relative;
   margin-bottom: 5px;
 }
+.blockWeatherNow::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
 .thunderBackground {
   background-image: url("../images/LightningBackground.jpg");
 }
@@ -118,27 +127,28 @@ p {
 .fewCloudsBackground {
   background-image: url("../images/FewCloudsBackground.jpg");
 }
-.cloudyNightBackground {
-  background-image: url("../images/CloudyNight.png");
+.fewCloudsNightBackground {
+  background-image: url("../images/FewCloudsNight.png");
 }
 .scatteredBackground {
   background-image: url("../images/ScatteredCloud.png");
 }
+.scatteredNightBackground {
+  background-image: url("../images/ScatteredNight.png");
+}
 .brokencloudBackground {
   background-image: url("../images/BrokenCloud.png");
+}
+.brokencloudNightBackground {
+  background-image: url("../images/BrokenNight.png");
 }
 .overcastBackground {
   background-image: url("../images/Overcast.jpg");
 }
-.blockWeatherNow::before {
-  content: "";
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  background-color: rgba(255, 255, 255, 0.2);
+.overcastNightBackground {
+  background-image: url("../images/OvercastNight.png");
 }
+
 .showNow {
   position: relative;
 }
@@ -173,13 +183,10 @@ p {
 }
 .weatherType {
   font-size: 20px;
+  font-weight: 800;
 }
 .weatherType:first-letter {
   text-transform: capitalize;
-}
-.funnyQuote {
-  margin-top: 10px;
-  font-size: 18px;
 }
 .metricButton {
   display: block;
@@ -278,4 +285,10 @@ hr {
 }
 footer {
   font-size: 10px;
+  margin: 0 0 5px 5px;
+}
+.linkedinLogo {
+  width: 12px;
+  margin: 0 8px 0 2px;
+  vertical-align: unset;
 }
