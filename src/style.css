@@ -57,12 +57,11 @@ p {
   background-color: #f1f3f4;
 }
 .searchButton {
-  display: inline;
   border: none;
   background: none;
   position: relative;
+  right: 40px;
   color: #6d757d;
-  right: 35px;
 }
 
 .currentLocation {
