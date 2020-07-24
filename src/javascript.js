@@ -50,9 +50,7 @@ function formatDate(timestamp) {
   let date = now.getDate();
   let dateType = getType(date);
   let year = now.getFullYear();
-
   let formattedTime = formatHours(timestamp);
-  console.log(formattedTime);
 
   return `Last updated: ${currentDay} - ${currentMonth} ${date}${dateType} ${year} - ${formattedTime}`;
 }
@@ -320,6 +318,9 @@ function showTemperature(response) {
 
 function showCity(response) {
   document.querySelector("#searched-city").innerHTML = response.data.name;
+  document.querySelector(
+    "#country"
+  ).innerHTML = `(${response.data.sys.country})`;
 }
 
 function showWeather(response) {
