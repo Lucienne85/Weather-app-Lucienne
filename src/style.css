@@ -12,17 +12,20 @@ p {
 }
 .header {
   text-align: center;
-  margin: 20px 0 10px 0;
+  margin: 15px 0 10px 0;
   font-size: 55px;
   color: #68809b;
   text-shadow: 2px 2px 10px darkgray;
 }
 .totalToday,
 .blockWeatherNow,
-.searchbar,
 .upcomingDays,
 .githubLink {
   max-width: 440px;
+  margin: 0 auto;
+}
+.searchbar {
+  width: 440px;
   margin: 0 auto;
 }
 .searchbar,
@@ -42,9 +45,7 @@ p {
   display: flex;
   align-items: center;
 }
-.searchForm {
-  width: 300px;
-}
+
 .form-control {
   display: inline-block;
   width: 80%;
@@ -67,9 +68,9 @@ p {
 .currentLocation {
   border: none;
   background: none;
-  opacity: 0.7;
   position: relative;
-  right: 70px;
+  right: 20px;
+  opacity: 0.7;
 }
 .locationIcon {
   width: 35px;
@@ -153,14 +154,20 @@ p {
   position: relative;
 }
 .city {
-  font-size: 45px;
   padding: 15px 0 0 20px;
   margin: 0;
   display: inline-block;
 }
+.city,
+.currentTemp {
+  font-size: 43px;
+}
+.currentTemp {
+  margin: 0;
+}
 .country {
   display: inline;
-  font-size: 20px;
+  font-size: 18px;
   margin-left: 5px;
 }
 .currentDate {
@@ -181,11 +188,6 @@ p {
 .metricButton {
   background-color: rgba(255, 255, 255, 0.7);
   transition: 180ms ease-in;
-}
-
-.currentTemp {
-  margin: 0;
-  font-size: 45px;
 }
 .weatherType {
   font-size: 20px;
