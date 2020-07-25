@@ -5,21 +5,26 @@ body {
 p {
   margin: 0;
 }
-.header,
-.city,
-.currentTemp {
-  font-family: "Lobster Two", cursive;
+hr {
+  margin: 0 10px;
 }
-.header {
-  text-align: center;
-  margin: 15px 0 10px 0;
-  font-size: 55px;
-  color: #68809b;
-  text-shadow: 2px 2px 10px darkgray;
+footer {
+  font-size: 10px;
+  margin: 0 0 5px 5px;
 }
+h5 {
+  margin: 0 20px;
+  line-height: 2.2;
+  font-size: 18px;
+}
+h5,
+.temperature {
+  color: #6d757d;
+}
+
 .totalToday,
 .blockWeatherNow,
-.upcomingDays,
+.upcomingHours,
 .githubLink {
   max-width: 440px;
   margin: 0 auto;
@@ -36,6 +41,18 @@ p {
 .wind,
 .feelsLike {
   border-radius: 10px;
+}
+.header {
+  text-align: center;
+  margin: 15px 0 10px 0;
+  font-size: 55px;
+  color: #68809b;
+  text-shadow: 2px 2px 10px darkgray;
+}
+.header,
+.city,
+.currentTemp {
+  font-family: "Lobster Two", cursive;
 }
 
 .searchbar {
@@ -63,7 +80,6 @@ p {
   right: 40px;
   color: #6d757d;
 }
-
 .currentLocation {
   border: none;
   background: none;
@@ -73,12 +89,6 @@ p {
 }
 .locationIcon {
   width: 35px;
-}
-.unitButton {
-  border: none;
-  background: none;
-  font-size: 20px;
-  color: #6d757d;
 }
 
 .searchbar,
@@ -161,9 +171,6 @@ p {
 .currentTemp {
   font-size: 43px;
 }
-.currentTemp {
-  margin: 0;
-}
 .country {
   display: inline;
   font-size: 18px;
@@ -180,13 +187,13 @@ p {
   width: fit-content;
   padding: 5px 10px;
 }
-.weatherNow,
-.humidity,
-.wind,
-.feelsLike,
-.metricButton {
-  background-color: rgba(255, 255, 255, 0.7);
-  transition: 180ms ease-in;
+.currentTemp {
+  margin: 0;
+}
+.currentIcon {
+  max-width: 45px;
+  max-height: 45px;
+  margin: 5px 0;
 }
 .weatherType {
   font-size: 20px;
@@ -213,6 +220,20 @@ p {
   width: 100px;
   margin: 0 auto;
 }
+.statType {
+  font-size: 12px;
+}
+.stats {
+  font-size: 18px;
+}
+.weatherNow,
+.humidity,
+.wind,
+.feelsLike,
+.metricButton {
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: 180ms ease-in;
+}
 .weatherNow:hover,
 .humidity:hover,
 .wind:hover,
@@ -220,11 +241,7 @@ p {
 .metricButton:hover {
   background-color: rgba(255, 255, 255, 1);
 }
-.currentIcon {
-  max-width: 45px;
-  max-height: 45px;
-  margin: 5px 0;
-}
+
 .humidityIcon,
 .windIcon,
 .feelsLikeIcon,
@@ -237,39 +254,12 @@ p {
 .feelsLikeIcon {
   margin-top: 10px;
 }
+.upcomingHours {
+  margin-bottom: 15px;
+}
 .hourIcons {
   margin: 5px 0;
   opacity: 0.6;
-}
-
-.statType {
-  font-size: 12px;
-}
-.stats {
-  font-size: 18px;
-}
-
-.upcomingHours {
-  text-align: center;
-  padding: 10px 30px;
-}
-.time {
-  font-weight: bold;
-}
-.hourTemp {
-  font-size: 14px;
-}
-.upcomingDays {
-  margin-bottom: 15px;
-}
-h5 {
-  margin: 0 20px;
-  line-height: 2.2;
-  font-size: 18px;
-}
-h5,
-.temperature {
-  color: #6d757d;
 }
 .temperature {
   font-size: 15px;
@@ -281,19 +271,13 @@ h5,
   padding-left: 0;
   padding-right: 50px;
 }
-hr {
-  margin: 0 10px;
-}
 .githubLink {
   font-size: 13px;
   text-align: right;
   margin-bottom: 70px;
   color: #6d757d;
 }
-footer {
-  font-size: 10px;
-  margin: 0 0 5px 5px;
-}
+
 .linkedinLogo {
   width: 12px;
   margin: 0 8px 0 2px;
