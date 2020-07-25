@@ -99,7 +99,7 @@ h5,
   background-size: 470px;
   height: 440px;
   position: relative;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 .blockWeatherNow::before {
   content: "";
@@ -116,11 +116,17 @@ h5,
 .drizzleBackground {
   background-image: url("../images/DrizzleBackground.jpg");
 }
+.drizzleNightBackground {
+  background-image: url("../images/DrizzleNight.png");
+}
 .freezingRainBackground {
   background-image: url("../images/FreezingBackground.jpg");
 }
 .rainBackground {
   background-image: url("../images/RainBackground.jpg");
+}
+.rainNightBackground {
+  background-image: url("../images/NightRain.png");
 }
 .snowBackground {
   background-image: url("../images/SnowBackground.jpg");
