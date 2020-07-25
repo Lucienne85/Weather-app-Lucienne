@@ -1,63 +1,152 @@
-function formatHours(timestamp) {
-  let date = new Date(timestamp);
-  return date.toLocaleString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
+function showCelsius(event) {
+  event.preventDefault();
+  let celsiusButton = document.querySelector("#celsius-button");
+  celsiusButton.removeEventListener("click", showCelsius);
+  celsiusButton.id = "fahrenheit-button";
+  celsiusButton.innerHTML = `Show Fahrenheit`;
+  document.querySelector("#temp-now").innerHTML = `${Math.round(
+    currentCelsiusTemp
+  )}°C`;
+  document.querySelector("#feels-like").innerHTML = `${Math.round(
+    feelsLikeTemp
+  )}°C`;
+  document.querySelector("#next-hour-temp").innerHTML = `${Math.round(
+    nextHourMinTemp
+  )}°C - ${Math.round(nextHourMaxTemp)}°C`;
+  document.querySelector("#three-hour-temp").innerHTML = `${Math.round(
+    threeHourMinTemp
+  )}°C - ${Math.round(threeHourMaxTemp)}°C`;
+  document.querySelector("#six-hour-temp").innerHTML = `${Math.round(
+    sixHourMinTemp
+  )}°C - ${Math.round(sixHourMaxTemp)}°C`;
+  document.querySelector("#nine-hour-temp").innerHTML = `${Math.round(
+    nineHourMinTemp
+  )}°C - ${Math.round(nineHourMaxTemp)}°C`;
+  document
+    .querySelector("#fahrenheit-button")
+    .addEventListener("click", showFahrenheit);
 }
 
-function formatDate(timestamp) {
-  let now = new Date(timestamp);
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "Deceber",
-  ];
-
-  function getType(date) {
-    if (date === 1 || date === 21 || date === 31) {
-      return "st";
-    } else if (date === 2 || date === 22) {
-      return "nd";
-    } else if (date === 3 || date === 23) {
-      return "rd";
-    } else return "th";
-  }
-
-  let currentDay = days[now.getDay()];
-  let currentMonth = months[now.getMonth()];
-  let date = now.getDate();
-  let dateType = getType(date);
-  let year = now.getFullYear();
-  let formattedTime = formatHours(timestamp);
-
-  return `Last updated: ${currentDay} - ${currentMonth} ${date}${dateType} ${year} - ${formattedTime}`;
+function showFahrenheit(event) {
+  event.preventDefault();
+  fahrenheitButton.removeEventListener("click", showFahrenheit);
+  fahrenheitButton.id = "celsius-button";
+  fahrenheitButton.innerHTML = `Show Celsius`;
+  let currentFahrenheitTemp = Math.round(currentCelsiusTemp * 1.8 + 32);
+  let feelsLikeFahrenheitTemp = Math.round(feelsLikeTemp * 1.8 + 32);
+  let nextHourMinFahrenheitTemp = Math.round(nextHourMinTemp * 1.8 + 32);
+  let nextHourMaxFahrenheitTemp = Math.round(nextHourMaxTemp * 1.8 + 32);
+  let threeHourMinFahrenheitTemp = Math.round(threeHourMinTemp * 1.8 + 32);
+  let threeHourMaxFahrenheitTemp = Math.round(threeHourMaxTemp * 1.8 + 32);
+  let sixHourMinFahrenheitTemp = Math.round(sixHourMinTemp * 1.8 + 32);
+  let sixHourMaxFahrenheitTemp = Math.round(sixHourMaxTemp * 1.8 + 32);
+  let nineHourMinFahrenheitTemp = Math.round(nineHourMinTemp * 1.8 + 32);
+  let nineHourMaxFahrenheitTemp = Math.round(nineHourMaxTemp * 1.8 + 32);
+  document.querySelector("#temp-now").innerHTML = `${currentFahrenheitTemp}°F`;
+  document.querySelector(
+    "#feels-like"
+  ).innerHTML = `${feelsLikeFahrenheitTemp}°F`;
+  document.querySelector(
+    "#next-hour-temp"
+  ).innerHTML = `${nextHourMinFahrenheitTemp}°F - ${nextHourMaxFahrenheitTemp}°F`;
+  document.querySelector(
+    "#three-hour-temp"
+  ).innerHTML = `${threeHourMinFahrenheitTemp}°F - ${threeHourMaxFahrenheitTemp}°F`;
+  document.querySelector(
+    "#six-hour-temp"
+  ).innerHTML = `${sixHourMinFahrenheitTemp}°F - ${sixHourMaxFahrenheitTemp}°F`;
+  document.querySelector(
+    "#nine-hour-temp"
+  ).innerHTML = `${nineHourMinFahrenheitTemp}°F - ${nineHourMaxFahrenheitTemp}°F`;
+  document
+    .querySelector("#celsius-button")
+    .addEventListener("click", showCelsius);
 }
 
-function showUpdatedTime(response) {
-  let currentDate = document.querySelector("#date-now");
-  currentDate.innerHTML = formatDate(response.data.dt * 1000);
+function showNineHour(response) {
+  nineHourMinTemp = response.data.list[3].main.temp_min;
+  nineHourMaxTemp = response.data.list[3].main.temp_max;
+  let weatherDescription = response.data.list[3].weather[0].description;
+  document.querySelector("#nine-hour-temp").innerHTML = `${Math.round(
+    nineHourMinTemp
+  )}°C - ${Math.round(nineHourMaxTemp)}°C`;
+  let nineHourIcon = document.querySelector("#nine-hour-icon");
+  let iconSource = determineIcon(
+    response.data.list[3].weather[0].main,
+    response.data.list[3].weather[0].description,
+    response.data.list[3].weather[0].icon
+  );
+  nineHourIcon.setAttribute("src", `${iconSource}`);
+  nineHourIcon.setAttribute("alt", `${weatherDescription}`);
+}
+
+function showSixHour(response) {
+  sixHourMinTemp = response.data.list[2].main.temp_min;
+  sixHourMaxTemp = response.data.list[2].main.temp_max;
+  let weatherDescription = response.data.list[2].weather[0].description;
+  document.querySelector("#six-hour-temp").innerHTML = `${Math.round(
+    sixHourMinTemp
+  )}°C - ${Math.round(sixHourMaxTemp)}°C`;
+  let sixHourIcon = document.querySelector("#six-hour-icon");
+  let iconSource = determineIcon(
+    response.data.list[2].weather[0].main,
+    response.data.list[2].weather[0].description,
+    response.data.list[2].weather[0].icon
+  );
+  sixHourIcon.setAttribute("src", `${iconSource}`);
+  sixHourIcon.setAttribute("alt", `${weatherDescription}`);
+}
+
+function showThreeHour(response) {
+  threeHourMinTemp = response.data.list[1].main.temp_min;
+  threeHourMaxTemp = response.data.list[1].main.temp_max;
+  let weatherDescription = response.data.list[1].weather[0].description;
+  document.querySelector("#three-hour-temp").innerHTML = `${Math.round(
+    threeHourMinTemp
+  )}°C - ${Math.round(threeHourMaxTemp)}°C`;
+  let threeHourIcon = document.querySelector("#three-hour-icon");
+  let iconSource = determineIcon(
+    response.data.list[1].weather[0].main,
+    response.data.list[1].weather[0].description,
+    response.data.list[1].weather[0].icon
+  );
+  threeHourIcon.setAttribute("src", `${iconSource}`);
+  threeHourIcon.setAttribute("alt", `${weatherDescription}`);
+}
+
+function showNextHour(response) {
+  nextHourMinTemp = response.data.list[0].main.temp_min;
+  nextHourMaxTemp = response.data.list[0].main.temp_max;
+  let weatherDescription = response.data.list[0].weather[0].description;
+  document.querySelector("#next-hour-temp").innerHTML = `${Math.round(
+    nextHourMinTemp
+  )}°C - ${Math.round(nextHourMaxTemp)}°C`;
+  let nextHourIcon = document.querySelector("#next-hour-icon");
+  let iconSource = determineIcon(
+    response.data.list[0].weather[0].main,
+    response.data.list[0].weather[0].description,
+    response.data.list[0].weather[0].icon
+  );
+  nextHourIcon.setAttribute("src", `${iconSource}`);
+  nextHourIcon.setAttribute("alt", `${weatherDescription}`);
+}
+
+function showForecast(response) {
+  showNextHour(response);
+  showThreeHour(response);
+  showSixHour(response);
+  showNineHour(response);
+}
+
+function callForecastApi(city) {
+  let apiKey = "1192a0652f0754927fef474420498ea7";
+  let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+  axios.get(forecastURL).then(showForecast);
+}
+
+function prepareForecast(response) {
+  let city = response.data.name;
+  callForecastApi(city);
 }
 
 function showBackground(response) {
@@ -249,6 +338,22 @@ function showBackground(response) {
   }
 }
 
+function showCurrentStats(response) {
+  let humidity = response.data.main.humidity;
+  let windSpeed = Math.round(response.data.wind.speed);
+  feelsLikeTemp = response.data.main.feels_like;
+  document.querySelector("#humidity").innerHTML = `${humidity}%`;
+  document.querySelector("#wind").innerHTML = `${windSpeed} km/h`;
+  document.querySelector("#feels-like").innerHTML = `${Math.round(
+    feelsLikeTemp
+  )}°C`;
+}
+
+function showWeatherType(response) {
+  let weatherType = response.data.weather[0].description;
+  document.querySelector("#weather-type").innerHTML = weatherType;
+}
+
 function determineIcon(weatherMain, weatherDescription, iconId) {
   if (weatherMain === "Thunderstorm") {
     return "images/thunder.png";
@@ -283,22 +388,6 @@ function showCurrentIcon(response) {
   currentIcon.setAttribute("src", `${iconSource}`);
 }
 
-function showCurrentStats(response) {
-  let humidity = response.data.main.humidity;
-  let windSpeed = Math.round(response.data.wind.speed);
-  feelsLikeTemp = response.data.main.feels_like;
-  document.querySelector("#humidity").innerHTML = `${humidity}%`;
-  document.querySelector("#wind").innerHTML = `${windSpeed} km/h`;
-  document.querySelector("#feels-like").innerHTML = `${Math.round(
-    feelsLikeTemp
-  )}°C`;
-}
-
-function showWeatherType(response) {
-  let weatherType = response.data.weather[0].description;
-  document.querySelector("#weather-type").innerHTML = weatherType;
-}
-
 function showTemperature(response) {
   currentCelsiusTemp = response.data.main.temp;
   document.querySelector(`#temp-now`).innerHTML = `${Math.round(
@@ -316,6 +405,68 @@ function showTemperature(response) {
   }
 }
 
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  return date.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+}
+
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "Deceber",
+  ];
+
+  function getType(date) {
+    if (date === 1 || date === 21 || date === 31) {
+      return "st";
+    } else if (date === 2 || date === 22) {
+      return "nd";
+    } else if (date === 3 || date === 23) {
+      return "rd";
+    } else return "th";
+  }
+
+  let currentDay = days[now.getDay()];
+  let currentMonth = months[now.getMonth()];
+  let date = now.getDate();
+  let dateType = getType(date);
+  let year = now.getFullYear();
+  let formattedTime = formatHours(timestamp);
+
+  return `Last updated: ${currentDay} - ${currentMonth} ${date}${dateType} ${year} - ${formattedTime}`;
+}
+
+function showUpdatedTime(response) {
+  let currentDate = document.querySelector("#date-now");
+  currentDate.innerHTML = formatDate(response.data.dt * 1000);
+}
+
 function showCity(response) {
   document.querySelector("#searched-city").innerHTML = response.data.name;
   document.querySelector(
@@ -325,88 +476,13 @@ function showCity(response) {
 
 function showWeather(response) {
   showCity(response);
+  showUpdatedTime(response);
   showTemperature(response);
+  showCurrentIcon(response);
   showWeatherType(response);
   showCurrentStats(response);
-  showCurrentIcon(response);
   showBackground(response);
-  showUpdatedTime(response);
 }
-
-function showNextHour(response) {
-  nextHourMinTemp = response.data.list[0].main.temp_min;
-  nextHourMaxTemp = response.data.list[0].main.temp_max;
-  let weatherDescription = response.data.list[0].weather[0].description;
-  document.querySelector("#next-hour-temp").innerHTML = `${Math.round(
-    nextHourMinTemp
-  )}°C - ${Math.round(nextHourMaxTemp)}°C`;
-  let nextHourIcon = document.querySelector("#next-hour-icon");
-  let iconSource = determineIcon(
-    response.data.list[0].weather[0].main,
-    response.data.list[0].weather[0].description,
-    response.data.list[0].weather[0].icon
-  );
-  nextHourIcon.setAttribute("src", `${iconSource}`);
-  nextHourIcon.setAttribute("alt", `${weatherDescription}`);
-}
-function showThreeHour(response) {
-  threeHourMinTemp = response.data.list[1].main.temp_min;
-  threeHourMaxTemp = response.data.list[1].main.temp_max;
-  let weatherDescription = response.data.list[1].weather[0].description;
-  document.querySelector("#three-hour-temp").innerHTML = `${Math.round(
-    threeHourMinTemp
-  )}°C - ${Math.round(threeHourMaxTemp)}°C`;
-  let threeHourIcon = document.querySelector("#three-hour-icon");
-  let iconSource = determineIcon(
-    response.data.list[1].weather[0].main,
-    response.data.list[1].weather[0].description,
-    response.data.list[1].weather[0].icon
-  );
-  threeHourIcon.setAttribute("src", `${iconSource}`);
-  threeHourIcon.setAttribute("alt", `${weatherDescription}`);
-}
-
-function showSixHour(response) {
-  sixHourMinTemp = response.data.list[2].main.temp_min;
-  sixHourMaxTemp = response.data.list[2].main.temp_max;
-  let weatherDescription = response.data.list[2].weather[0].description;
-  document.querySelector("#six-hour-temp").innerHTML = `${Math.round(
-    sixHourMinTemp
-  )}°C - ${Math.round(sixHourMaxTemp)}°C`;
-  let sixHourIcon = document.querySelector("#six-hour-icon");
-  let iconSource = determineIcon(
-    response.data.list[2].weather[0].main,
-    response.data.list[2].weather[0].description,
-    response.data.list[2].weather[0].icon
-  );
-  sixHourIcon.setAttribute("src", `${iconSource}`);
-  sixHourIcon.setAttribute("alt", `${weatherDescription}`);
-}
-
-function showNineHour(response) {
-  nineHourMinTemp = response.data.list[3].main.temp_min;
-  nineHourMaxTemp = response.data.list[3].main.temp_max;
-  let weatherDescription = response.data.list[3].weather[0].description;
-  document.querySelector("#nine-hour-temp").innerHTML = `${Math.round(
-    nineHourMinTemp
-  )}°C - ${Math.round(nineHourMaxTemp)}°C`;
-  let nineHourIcon = document.querySelector("#nine-hour-icon");
-  let iconSource = determineIcon(
-    response.data.list[3].weather[0].main,
-    response.data.list[3].weather[0].description,
-    response.data.list[3].weather[0].icon
-  );
-  nineHourIcon.setAttribute("src", `${iconSource}`);
-  nineHourIcon.setAttribute("alt", `${weatherDescription}`);
-}
-
-function showForecast(response) {
-  showNextHour(response);
-  showThreeHour(response);
-  showSixHour(response);
-  showNineHour(response);
-}
-
 function callWeatherApi(city) {
   let apiKey = "1192a0652f0754927fef474420498ea7";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
@@ -415,17 +491,6 @@ function callWeatherApi(city) {
   callForecastApi(city);
 }
 
-function callForecastApi(city) {
-  let apiKey = "1192a0652f0754927fef474420498ea7";
-  let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
-  axios.get(forecastURL).then(showForecast);
-}
-
-function handleSubmit(event) {
-  event.preventDefault();
-  let city = document.querySelector("#search-city-input").value;
-  callWeatherApi(city);
-}
 function getPositionWeather(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -434,10 +499,6 @@ function getPositionWeather(position) {
   axios.get(apiUrl).then(showWeather);
   axios.get(apiUrl).then(prepareForecast);
 }
-function prepareForecast(response) {
-  let city = response.data.name;
-  callForecastApi(city);
-}
 
 function getCurrentLocation(event) {
   event.preventDefault();
@@ -445,76 +506,20 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(getPositionWeather);
 }
 
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", handleSubmit);
+function handleSubmit(event) {
+  event.preventDefault();
+  let city = document.querySelector("#search-city-input").value;
+  callWeatherApi(city);
+}
+
+let fahrenheitButton = document.querySelector("#fahrenheit-button");
+fahrenheitButton.addEventListener("click", showFahrenheit);
 
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
-function showCelsius(event) {
-  event.preventDefault();
-  let celsiusButton = document.querySelector("#celsius-button");
-  celsiusButton.removeEventListener("click", showCelsius);
-  celsiusButton.id = "fahrenheit-button";
-  celsiusButton.innerHTML = `Show Fahrenheit`;
-  document.querySelector("#temp-now").innerHTML = `${Math.round(
-    currentCelsiusTemp
-  )}°C`;
-  document.querySelector("#feels-like").innerHTML = `${Math.round(
-    feelsLikeTemp
-  )}°C`;
-  document.querySelector("#next-hour-temp").innerHTML = `${Math.round(
-    nextHourMinTemp
-  )}°C - ${Math.round(nextHourMaxTemp)}°C`;
-  document.querySelector("#three-hour-temp").innerHTML = `${Math.round(
-    threeHourMinTemp
-  )}°C - ${Math.round(threeHourMaxTemp)}°C`;
-  document.querySelector("#six-hour-temp").innerHTML = `${Math.round(
-    sixHourMinTemp
-  )}°C - ${Math.round(sixHourMaxTemp)}°C`;
-  document.querySelector("#nine-hour-temp").innerHTML = `${Math.round(
-    nineHourMinTemp
-  )}°C - ${Math.round(nineHourMaxTemp)}°C`;
-  document
-    .querySelector("#fahrenheit-button")
-    .addEventListener("click", showFahrenheit);
-}
-
-function showFahrenheit(event) {
-  event.preventDefault();
-  fahrenheitButton.removeEventListener("click", showFahrenheit);
-  fahrenheitButton.id = "celsius-button";
-  fahrenheitButton.innerHTML = `Show Celsius`;
-  let currentFahrenheitTemp = Math.round(currentCelsiusTemp * 1.8 + 32);
-  let feelsLikeFahrenheitTemp = Math.round(feelsLikeTemp * 1.8 + 32);
-  let nextHourMinFahrenheitTemp = Math.round(nextHourMinTemp * 1.8 + 32);
-  let nextHourMaxFahrenheitTemp = Math.round(nextHourMaxTemp * 1.8 + 32);
-  let threeHourMinFahrenheitTemp = Math.round(threeHourMinTemp * 1.8 + 32);
-  let threeHourMaxFahrenheitTemp = Math.round(threeHourMaxTemp * 1.8 + 32);
-  let sixHourMinFahrenheitTemp = Math.round(sixHourMinTemp * 1.8 + 32);
-  let sixHourMaxFahrenheitTemp = Math.round(sixHourMaxTemp * 1.8 + 32);
-  let nineHourMinFahrenheitTemp = Math.round(nineHourMinTemp * 1.8 + 32);
-  let nineHourMaxFahrenheitTemp = Math.round(nineHourMaxTemp * 1.8 + 32);
-  document.querySelector("#temp-now").innerHTML = `${currentFahrenheitTemp}°F`;
-  document.querySelector(
-    "#feels-like"
-  ).innerHTML = `${feelsLikeFahrenheitTemp}°F`;
-  document.querySelector(
-    "#next-hour-temp"
-  ).innerHTML = `${nextHourMinFahrenheitTemp}°F - ${nextHourMaxFahrenheitTemp}°F`;
-  document.querySelector(
-    "#three-hour-temp"
-  ).innerHTML = `${threeHourMinFahrenheitTemp}°F - ${threeHourMaxFahrenheitTemp}°F`;
-  document.querySelector(
-    "#six-hour-temp"
-  ).innerHTML = `${sixHourMinFahrenheitTemp}°F - ${sixHourMaxFahrenheitTemp}°F`;
-  document.querySelector(
-    "#nine-hour-temp"
-  ).innerHTML = `${nineHourMinFahrenheitTemp}°F - ${nineHourMaxFahrenheitTemp}°F`;
-  document
-    .querySelector("#celsius-button")
-    .addEventListener("click", showCelsius);
-}
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", handleSubmit);
 
 let currentCelsiusTemp = null;
 let feelsLikeTemp = null;
@@ -526,8 +531,5 @@ let sixHourMinTemp = null;
 let sixHourMaxTemp = null;
 let nineHourMinTemp = null;
 let nineHourMaxTemp = null;
-
-let fahrenheitButton = document.querySelector("#fahrenheit-button");
-fahrenheitButton.addEventListener("click", showFahrenheit);
 
 callWeatherApi("Amsterdam");
